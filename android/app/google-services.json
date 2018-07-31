@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "490103132614",
+    "firebase_url": "https://nitdgpglugapp-d6291.firebaseio.com",
+    "project_id": "nitdgpglugapp-d6291",
+    "storage_bucket": "nitdgpglugapp-d6291.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490103132614:android:84851eef8e2336da",
+        "android_client_info": {
+          "package_name": "com.nitdgplugapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490103132614-bt2ka0n6ungj547drvvitfl11gm31qrp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHM8kLx1WJ4LbNkN8ZhVHnJ6KTMWKi_sY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

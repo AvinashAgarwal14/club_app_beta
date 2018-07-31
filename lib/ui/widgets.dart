@@ -25,7 +25,26 @@ class _WidgetsState extends State<Widgets> {
     return Drawer(
       child: new ListView(
         children: <Widget>[
-          new ListTile(),
+          Padding(padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0)),
+          new Center(
+            child: new ListTile(
+                title: CircleAvatar(
+                  backgroundColor: Colors.black,
+                  child: Image.asset("images/logo.png"),
+                  radius: 45.0,
+                ),
+              subtitle: new Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                child: Text("GNU Linux User's Group",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              )
+            )
+          ),
           new  ListTile(
             leading: menuIcon(Icons.event) ,
             title: new Text(

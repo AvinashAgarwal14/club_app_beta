@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import './data.dart';
 import './page_transformer.dart';
+import './news_details.dart';
 
 class IntroPageItem extends StatelessWidget {
   IntroPageItem({
@@ -34,30 +35,18 @@ class IntroPageItem extends StatelessWidget {
 
   _buildTextContainer(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var categoryText = _applyTextEffects(
-      translationFactor: 300.0,
-      child: Text(
-        item.category,
-        style: textTheme.caption.copyWith(
-          color: Colors.white70,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 2.0,
-          fontSize: 14.0,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
 
     var titleText = _applyTextEffects(
       translationFactor: 200.0,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
-        child: Text(
-          item.title,
-          style: textTheme.title
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+        child:
+        Text(
+              item.title,
+              style: textTheme.title
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            )
       ),
     );
 
@@ -68,7 +57,6 @@ class IntroPageItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          categoryText,
           titleText,
         ],
       ),
@@ -77,7 +65,7 @@ class IntroPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var image = Image.asset(
+    var image = Image.network(
       item.imageUrl,
       fit: BoxFit.cover,
       alignment: FractionalOffset(
@@ -100,9 +88,12 @@ class IntroPageItem extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: (){
-        print(item.title);
-      } ,
+      onTap:() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => new NewsDetails(title: item.title, description: item.description, imageUrl: item.imageUrl, author: item.author, url: item.url,)),
+        );
+      },
         child:Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,

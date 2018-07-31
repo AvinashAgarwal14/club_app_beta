@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets.dart';
-import './upcoming.dart';
+import './upcoming_events/upcoming.dart';
+import './previous_events/previous.dart';
 
 class events  extends StatefulWidget {
 
@@ -50,7 +51,7 @@ class _eventsState extends State<events> with SingleTickerProviderStateMixin{
                 TabBarView(controller: _eventsTab,
                       children: <Widget>[
                      new Upcoming(),
-                    new Upcoming()
+                    new Previous()
                     ]
                 ),
                 Container(
@@ -60,8 +61,7 @@ class _eventsState extends State<events> with SingleTickerProviderStateMixin{
                   ),
                     ]
             ),
-                  )
-                );
-
+          )
+      );
   }
 }
