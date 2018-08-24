@@ -12,6 +12,7 @@ class events  extends StatefulWidget {
 class _eventsState extends State<events> with SingleTickerProviderStateMixin{
 
   TabController _eventsTab;
+  final GlobalKey<ScaffoldState> _appBarKey = new GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -42,7 +43,7 @@ class _eventsState extends State<events> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-
+         key: _appBarKey ,
          drawer: new Widgets(),
           body: Container(
             child:Stack(
@@ -59,6 +60,17 @@ class _eventsState extends State<events> with SingleTickerProviderStateMixin{
                     child: TabBar(controller: _eventsTab, tabs: myTabs,
                     indicatorColor: Colors.black54),
                   ),
+
+                Container (
+                    margin: EdgeInsets.fromLTRB(4.0, 28.0, 0.0, 0.0),
+                    child: new IconButton(
+                      icon: Icon(Icons.menu)
+                      ,
+                      color: Colors.white,
+                      onPressed: () => _appBarKey.currentState.openDrawer(),
+                    )
+                )
+
                     ]
             ),
           )

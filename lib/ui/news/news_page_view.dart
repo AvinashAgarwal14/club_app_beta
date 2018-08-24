@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './data.dart';
-import './intro_page_item.dart';
-import './page_transformer.dart';
+import './news_data.dart';
+import './news_page_item.dart';
+import './newspage_transformer.dart';
 
-class IntroPageView extends StatelessWidget {
+class NewsPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(sampleItems.length);
@@ -21,7 +21,7 @@ class IntroPageView extends StatelessWidget {
                   final pageVisibility =
                       visibilityResolver.resolvePageVisibility(index);
 
-                  return IntroPageItem(
+                  return NewsPageItem(
                     item: item,
                     pageVisibility: pageVisibility,
                   );

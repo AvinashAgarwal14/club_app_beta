@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets.dart';
-import './intro_page_view.dart';
+import './home_page_view.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,12 +26,12 @@ class _HomePageState extends State<HomePage> {
             decoration: new BoxDecoration(
             image: new DecorationImage(
             image: new AssetImage("images/background.png"),
-            fit: BoxFit.cover,
+              fit: BoxFit.cover
               ),
             ),
           ),
 
-          new IntroPageView(),
+          new HomePageView(),
 
     ],
     );

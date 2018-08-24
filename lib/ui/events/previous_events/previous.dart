@@ -1,10 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import './data.dart';
-import './intro_page_view.dart';
+import 'previous_events_data.dart';
+import 'previous_events_page_view.dart';
 import 'package:intl/intl.dart';
 
-List<IntroItem> previousEventsList;
+List<EventItem> previousEventsList;
 
 class Previous extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class Previous extends StatefulWidget {
 
 class _PreviousState extends State<Previous> {
 
-  IntroItem event;
+  EventItem event;
   final FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference databaseReference;
 
@@ -23,7 +23,7 @@ class _PreviousState extends State<Previous> {
       super.initState();
 
       previousEventsList = new List();
-      event = new IntroItem("", "","","");
+      event = new EventItem("", "","","");
       databaseReference = database.reference().child("Events");
       databaseReference.onChildAdded.listen(_onEntryAdded);
       databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -45,7 +45,7 @@ class _PreviousState extends State<Previous> {
 
         Container(
             child: (previousEventsList.length!=0)?
-            new IntroPageView():
+            new PreviousEventsView():
             new Center(
                 child: Stack(
                   children: <Widget>[
@@ -92,7 +92,7 @@ class _PreviousState extends State<Previous> {
 
     setState(() {
       if(difference.inDays<0)
-        previousEventsList.add(IntroItem.fromSnapshot(event.snapshot));
+        previousEventsList.add(EventItem.fromSnapshot(event.snapshot));
     });
   }
 
@@ -103,7 +103,7 @@ class _PreviousState extends State<Previous> {
     });
 
     setState(() {
-      previousEventsList[previousEventsList.indexOf(oldEntry)] = IntroItem.fromSnapshot(event.snapshot);
+      previousEventsList[previousEventsList.indexOf(oldEntry)] = EventItem.fromSnapshot(event.snapshot);
     });
 
   }

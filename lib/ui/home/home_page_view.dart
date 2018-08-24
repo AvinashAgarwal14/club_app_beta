@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './data.dart';
-import './intro_page_item.dart';
-import './page_transformer.dart';
+import './home_data.dart';
+import './home_page_item.dart';
+import './homepage_transformer.dart';
 
-class IntroPageView extends StatelessWidget {
+class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(sampleItems.length);
@@ -21,7 +21,7 @@ class IntroPageView extends StatelessWidget {
                   final pageVisibility =
                       visibilityResolver.resolvePageVisibility(index);
 
-                  return IntroPageItem(
+                  return HomePageItem(
                     item: item,
                     pageVisibility: pageVisibility,
                   );

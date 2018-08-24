@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import './data.dart';
-import './page_transformer.dart';
-import './event_details.dart';
+import './home_data.dart';
+import './homepage_transformer.dart';
 
-class IntroPageItem extends StatelessWidget {
-
-  IntroPageItem({
+class HomePageItem extends StatelessWidget {
+  HomePageItem({
     @required this.item,
     @required this.pageVisibility,
   });
 
-  final IntroItem item;
+  final HomeItem item;
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -36,16 +34,18 @@ class IntroPageItem extends StatelessWidget {
 
   _buildTextContainer(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
+
     var titleText = _applyTextEffects(
       translationFactor: 200.0,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
-        child: Text(
-          item.title,
-          style: textTheme.title
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+        child:
+        Text(
+              item.title,
+              style: textTheme.title
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            )
       ),
     );
 
@@ -88,12 +88,9 @@ class IntroPageItem extends StatelessWidget {
 
     return GestureDetector(
       onTap:() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => new EventDetails(title: item.title, body: item.body, imageUrl: item.imageUrl, date: item.date)),
-        );
+        Navigator.pushNamed(context, '${item.route}');
       },
-      child:Padding(
+        child:Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,
         horizontal: 8.0,
@@ -112,9 +109,5 @@ class IntroPageItem extends StatelessWidget {
       ),
     ),
     );
-  }
-
-  _eventDetails() {
-    return new EventDetails();
   }
 }

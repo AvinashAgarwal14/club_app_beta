@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import './data.dart';
-import './page_transformer.dart';
+import './previous_events_data.dart';
+import './previous_events_page_transformer.dart';
+import './event_details.dart';
 
 class IntroPageItem extends StatelessWidget {
+
   IntroPageItem({
     @required this.item,
     @required this.pageVisibility,
   });
 
-  final IntroItem item;
+  final EventItem item;
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -34,18 +36,16 @@ class IntroPageItem extends StatelessWidget {
 
   _buildTextContainer(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-
     var titleText = _applyTextEffects(
       translationFactor: 200.0,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
-        child:
-        Text(
-              item.title,
-              style: textTheme.title
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            )
+        child: Text(
+          item.title,
+          style: textTheme.title
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
 
@@ -88,26 +88,33 @@ class IntroPageItem extends StatelessWidget {
 
     return GestureDetector(
       onTap:() {
-        Navigator.pushNamed(context, '${item.route}');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => new EventDetails(title: item.title, body: item.body, imageUrl: item.imageUrl, date: item.date)),
+        );
       },
-        child:Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16.0,
-        horizontal: 8.0,
-      ),
-      child: Material(
-        elevation: 4.0,
-        borderRadius: BorderRadius.circular(8.0),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            image,
-            imageOverlayGradient,
-            _buildTextContainer(context),
-          ],
+      child:Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 16.0,
+          horizontal: 8.0,
+        ),
+        child: Material(
+          elevation: 4.0,
+          borderRadius: BorderRadius.circular(8.0),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              image,
+              imageOverlayGradient,
+              _buildTextContainer(context),
+            ],
+          ),
         ),
       ),
-    ),
     );
+  }
+
+  _eventDetails() {
+    return new EventDetails();
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './data.dart';
-import './intro_page_item.dart';
-import './page_transformer.dart';
+import './previous_events_data.dart';
+import './previous_events_page_item.dart';
+import './previous_events_page_transformer.dart';
 
-class IntroPageView extends StatelessWidget {
+class PreviousEventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(sampleItems.length);

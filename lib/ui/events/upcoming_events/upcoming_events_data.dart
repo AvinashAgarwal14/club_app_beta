@@ -3,9 +3,9 @@ import './upcoming.dart';
 
 List recievedEventsList = upcomingEventsList;
 
-class IntroItem {
+class EventItem {
 
-  IntroItem(
+  EventItem(
     this.title,
     this.body,
     this.imageUrl,this.date
@@ -17,7 +17,7 @@ class IntroItem {
   String imageUrl;
   String date;
 
-  IntroItem.fromSnapshot(DataSnapshot snapshot) :
+  EventItem.fromSnapshot(DataSnapshot snapshot) :
         key = snapshot.key,
         title = snapshot.value['title'],
         body = snapshot.value['body'],

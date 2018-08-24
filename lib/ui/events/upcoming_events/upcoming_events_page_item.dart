@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import './data.dart';
-import './page_transformer.dart';
-import './news_details.dart';
+import './upcoming_events_data.dart';
+import './upcoming_events_page_transformer.dart';
+import './event_details.dart';
 
-class IntroPageItem extends StatelessWidget {
-  IntroPageItem({
+class UpcomingEventItem extends StatelessWidget {
+
+  UpcomingEventItem({
     @required this.item,
     @required this.pageVisibility,
   });
 
-  final IntroItem item;
+  final EventItem item;
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -35,18 +36,16 @@ class IntroPageItem extends StatelessWidget {
 
   _buildTextContainer(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-
     var titleText = _applyTextEffects(
       translationFactor: 200.0,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
-        child:
-        Text(
-              item.title,
-              style: textTheme.title
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            )
+        child: Text(
+          item.title,
+          style: textTheme.title
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
 
@@ -91,10 +90,10 @@ class IntroPageItem extends StatelessWidget {
       onTap:() {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => new NewsDetails(title: item.title, description: item.description, imageUrl: item.imageUrl, author: item.author, url: item.url,)),
+          MaterialPageRoute(builder: (context) => new EventDetails(title: item.title, body: item.body, imageUrl: item.imageUrl, date: item.date)),
         );
       },
-        child:Padding(
+      child:Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,
         horizontal: 8.0,
@@ -113,5 +112,9 @@ class IntroPageItem extends StatelessWidget {
       ),
     ),
     );
+  }
+
+  _eventDetails() {
+    return new EventDetails();
   }
 }

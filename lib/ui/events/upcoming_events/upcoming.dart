@@ -1,11 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import './data.dart';
-import './intro_page_view.dart';
+import './upcoming_events_data.dart';
+import './upcoming_events_page_view.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-List<IntroItem> eventsList;
-List<IntroItem> upcomingEventsList;
+List<EventItem> eventsList;
+List<EventItem> upcomingEventsList;
 
 class Upcoming extends StatefulWidget {
   @override
@@ -14,7 +15,8 @@ class Upcoming extends StatefulWidget {
 
 class _UpcomingState extends State<Upcoming> {
 
-  IntroItem event;
+  EventItem event;
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   final FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference databaseReference;
 
@@ -25,10 +27,15 @@ class _UpcomingState extends State<Upcoming> {
 
       eventsList = new List();
       upcomingEventsList = new List();
-      event = new IntroItem("", "", "", "");
+      event = new EventItem("", "", "", "");
       databaseReference = database.reference().child("Events");
       databaseReference.onChildAdded.listen(_onEntryAdded);
       databaseReference.onChildChanged.listen(_onEntryChanged);
+      _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) {
+          print("onMessage: $message");
+        }
+      );
     }
 
 
@@ -47,7 +54,7 @@ class _UpcomingState extends State<Upcoming> {
 
         Container(
           child: (eventsList.length!=0)?
-            new IntroPageView():
+            new UpcomingEventView():
             new Center(
               child: Stack(
                 children: <Widget>[
@@ -93,9 +100,9 @@ class _UpcomingState extends State<Upcoming> {
     Duration difference = eventDate.difference(dateNow);
 
     setState(() {
-      eventsList.add(IntroItem.fromSnapshot(event.snapshot));
+      eventsList.add(EventItem.fromSnapshot(event.snapshot));
       if(difference.inDays>=0)
-        upcomingEventsList.add(IntroItem.fromSnapshot(event.snapshot));
+        upcomingEventsList.add(EventItem.fromSnapshot(event.snapshot));
     });
   }
 
@@ -106,7 +113,7 @@ class _UpcomingState extends State<Upcoming> {
     });
 
     setState(() {
-      upcomingEventsList[upcomingEventsList.indexOf(oldEntry)] = IntroItem.fromSnapshot(event.snapshot);
+      upcomingEventsList[upcomingEventsList.indexOf(oldEntry)] = EventItem.fromSnapshot(event.snapshot);
     });
 
   }

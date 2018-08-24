@@ -11,7 +11,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () => Navigator.pushNamed(context, '/ui/home'));
+    Timer(Duration(seconds: 3), () {
+      return Navigator.of(context).pushNamedAndRemoveUntil('/ui/home', (Route<dynamic> route) => false);
+    });
   }
 
   @override

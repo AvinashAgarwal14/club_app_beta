@@ -1,7 +1,7 @@
 import './news.dart';
 List newsList = sendNewsList();
-class IntroItem {
-  IntroItem({
+class NewsItem {
+  NewsItem({
     this.title,
     this.imageUrl,
     this.author,
@@ -16,18 +16,18 @@ class IntroItem {
   final String url;
 }
 
-List<IntroItem> createIntroItemList() {
+List<NewsItem> createNewsItemList() {
 
-  List<IntroItem> items = new List();
+  List<NewsItem> items = new List();
   for(int i =0;i<newsList.length;i++){
     var _title = newsList[i]['title'];
     var _imageUrl = newsList[i]['urlToImage'];
     var _author = newsList[i]['author'];
     var _description = newsList[i]['description'];
     var _url = newsList[i]['url'];
-    items.add(new IntroItem(title: '$_title', imageUrl: '$_imageUrl', author: '$_author', description: '$_description', url: '$_url'));
+    items.add(new NewsItem(title: '$_title', imageUrl: '$_imageUrl', author: '$_author', description: '$_description', url: '$_url'));
   }
   return items;
 }
 
-final sampleItems = createIntroItemList();
+final sampleItems = createNewsItemList();
